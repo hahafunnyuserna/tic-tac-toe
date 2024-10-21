@@ -50,7 +50,7 @@ bool checkWin(char board[3][3], char player)
 
 int main(void) 
 { 
-    cout << "Welcome to Tic-Tac-Toe!\n"; 
+    cout << "Welcome to the game!\n"; 
 
     string repeat = "y";
     while ((repeat == "Y") || (repeat == "y"))
@@ -85,10 +85,12 @@ int main(void)
                     cin.ignore(40, '\n');
                 }
 
-                if (((board[row][col] != ' ') || (row < 0) || (row > 2) 
-                    || (col < 0) || (col > 2)))
+                if (((row < 0) || (row > 2) || (col < 0) || (col > 2)))
+                {
+                    cout << "ERROR: Invalid move. Try again.\n";
+                } else if (board[row][col] != ' ')
                 { 
-                    cout << "ERROR: Invalid move. Try again.\n"; 
+                    cout <<  "This space is already filled. Try again.\n";
                 } else { 
                     break;
                 } 
