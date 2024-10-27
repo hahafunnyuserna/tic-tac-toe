@@ -50,7 +50,14 @@ bool checkWin(char board[3][3], char player)
 
 int main(void) 
 { 
-    cout << "Welcome to the game!\n"; 
+    cout << "Welcome to the game!\nPlease input the character for player 1 (only the first letter is counted):\n";
+    string playerOne;
+    cin >> playerOne;
+    
+    
+    cout << "Please input the character for player 2 (only the first letter is counted):\n";
+    string playerTwo;
+    cin >> playerTwo;
 
     string repeat = "y";
     while ((repeat == "Y") || (repeat == "y"))
@@ -58,7 +65,7 @@ int main(void)
         char board[3][3] = { { ' ', ' ', ' ' }, 
                             { ' ', ' ', ' ' }, 
                             { ' ', ' ', ' ' } }; 
-        char player = 'X'; 
+        char player = playerOne[0]; 
         int row, col; 
         int turn;
     
@@ -105,12 +112,12 @@ int main(void)
                 break; 
             } 
 
-            player = (player == 'X') ? 'O' : 'X'; 
+            player = (player == playerOne[0]) ? playerTwo[0] : playerOne[0]; 
         } 
 
         createBoard(board); 
 
-        if (turn == 9 && !checkWin(board, 'X') && (!checkWin(board, 'O')))
+        if (turn == 9 && !checkWin(board, playerOne[0]) && (!checkWin(board, playerTwo[0])))
         { 
             cout << "It's a draw!\n"; 
         } 
