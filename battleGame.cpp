@@ -1,3 +1,4 @@
+#pragma once
 #include "regularGame.cpp"
 
 bool checkSwarmWin(char board[3][3], char player) 
@@ -37,7 +38,7 @@ bool checkSwarmWin(char board[3][3], char player)
 	return false; 
 }
 
-void battleGame()
+void battleGame(int &oneTotal, int &twoTotal, int &drawTotal)
 {
     char archetypeOne;
     char archetypeTwo;
@@ -206,7 +207,14 @@ void battleGame()
             if (checkSwarmWin(board, player))
             {
                 createBoard(board); 
-                cout << "\n\nPlayer " << player << " wins!"; 
+                cout << "\n\nPlayer " << player << " wins!";
+                if (player == playerOne[0])
+                {
+                    oneTotal++;
+            }    else if (player == playerTwo[0]) {
+                    twoTotal++;
+                }
+
                 break; 
             }
         }
@@ -215,7 +223,17 @@ void battleGame()
         { 
             createBoard(board); 
             cout << "\n\nPlayer " << player << " wins!"; 
-            break; 
+            createBoard(board); 
+            cout << "\n\nPlayer " << player << " wins!"; 
+
+            if (player == playerOne[0])
+            {
+                oneTotal++;
+            } else if (player == playerTwo[0]) {
+                twoTotal++;
+            }
+
+            break;
         } 
 
         player = (player == playerOne[0]) ? playerTwo[0] : playerOne[0]; 
@@ -227,6 +245,7 @@ void battleGame()
 
     if (turn == 9 && !checkWin(board, playerOne[0]) && (!checkWin(board, playerTwo[0])))
     { 
-        cout << "It's a draw!\n"; 
+        cout << "It's a draw!\n";
+        drawTotal++; 
     } 
 }

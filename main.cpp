@@ -1,6 +1,7 @@
 #include "battleGame.cpp"
+#include <fstream>
 
-void gameSelection()
+void gameSelection(int &one, int &two, int &draw)
 {
     char menuInput;
     cout << "\nPlease select the option you want to play:\n[S] - Standard (Regular game, regular rules)\n[B] - Battle Toe (Play using archetypes with special abilities)\n";
@@ -11,18 +12,18 @@ void gameSelection()
         cin.ignore(40, '\n');
     }
 
-    if ((menuInput == 'S')|| (menuInput == 's'))
+    if ((menuInput == 'S') || (menuInput == 's'))
     {
-        standardGame();
+        standardGame(one, two, draw);
     }
 
-    if ((menuInput == 'B')|| (menuInput == 'b'))
+    if ((menuInput == 'B') || (menuInput == 'b'))
     {
-        battleGame();
+        battleGame(one, two, draw);
     }
 }
 
-bool repeatGame()
+bool repeatGame(int &one, int &two, int &draw)
 {
     char repeatInput;
     bool repeat;
@@ -45,7 +46,7 @@ bool repeatGame()
         cout << "Goodbye.\n";
         repeat = false;
         cin.clear();
-        cin.ignore(40, '\n');
+        cin.ignore(40, '\n');       
     }
 
     return repeat;
@@ -53,13 +54,20 @@ bool repeatGame()
 
 int main(void) 
 { 
+    int oneVal = 0;
+    int twoVal = 0;
+    int drawVal = 0;
+
     bool repeat = true;
     cout << "Welcome!";
     while (true)
     {
-        gameSelection();
-        if (repeatGame() == false)
+    
+        gameSelection(oneVal, twoVal, drawVal);
+        if (repeatGame(oneVal, twoVal, drawVal) == false)
         {
+            ofstream outfile ("gameReport.txt");
+            outfile << "Total Games Played: " << (oneVal + twoVal + drawVal) << "\n\nPlayer 1 Wins: " << oneVal << "\nPlayer 2 Wins: " << twoVal << "\nDraws: " << drawVal;
             break;
         }
     }

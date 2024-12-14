@@ -1,11 +1,5 @@
-This branch contains an additional menu option to select a unique variant of
-tic-tac-toe, where each player has the option to select a character class
-with unique abilities.
-
-Classes include:
-
-Pyromancer - At the start of any given turn, can use a special move to wipe
-all markers currently on the board. Can only be used once per game.
-
-Swarm - Can win by filling in all four corners of the board, in addition to
-the standard win conditions.
+This branch is largely the same as partTwo, with the addition of the
+generation of a game report file once the user exits the program naturally.
+This file contains the total games played, the number of games each player
+has won, and the number of ties that have occurred.
+Note that any errors found in previous branches are present here.

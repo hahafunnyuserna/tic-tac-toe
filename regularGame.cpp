@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include <algorithm>
 #include <string>
@@ -49,9 +50,7 @@ bool checkWin(char board[3][3], char player)
 	return false; 
 }
 
-
-
-void standardGame()
+void standardGame(int &oneTotal, int &twoTotal, int &drawTotal)
 {
     cout << "\n\n\n\n\n\n\n\n\nPlease input the character for player 1:\n";
     string playerOne;
@@ -138,6 +137,13 @@ void standardGame()
         { 
             createBoard(board); 
             cout << "\n\nPlayer " << player << " wins!"; 
+            if (player == playerOne[0])
+            {
+                oneTotal++;
+            } else if (player == playerTwo[0]) {
+                twoTotal++;
+            }
+            
             break; 
         } 
 
@@ -149,5 +155,6 @@ void standardGame()
     if (turn == 9 && !checkWin(board, playerOne[0]) && (!checkWin(board, playerTwo[0])))
     { 
         cout << "It's a draw!\n"; 
+        drawTotal++;
     } 
 }
